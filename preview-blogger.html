@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Title | Blogger</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&amp;display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Comic Relief';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/comicrelief/v2/BCauqZkHrvL55SZ8uaEhHMYGXxhgLAguK2Wk.woff2) format('woff2');
+            unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-family: 'Comic Relief';
+            align-items: center;
+            
+            height: 100vh;  
+            
+            position: relative;
+            place-content: center;
+            padding: 10px;
+            gap: 21px;
+            background: #A7C5DF;
+        }
+
+
+        .rainbow {
+        background: linear-gradient(
+            90deg,
+            #ff004d,
+            #ff7700,
+            #ffd200,
+            #00c800,
+            #00a6ff,
+            #7a5cff,
+            #ff2dff,
+            #ff004d
+        );
+        background-size: 400% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: rainbow 6s linear infinite;
+        display: inline-block;
+        }
+
+        @keyframes rainbow {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+        }
+
+        .rainbow-hue {
+        display:inline-block;
+        color:#fff;
+        animation: hue 5s linear infinite;
+        }
+        @keyframes hue { from { filter: hue-rotate(0deg); } to { filter: hue-rotate(360deg); } }
+
+        #silly-title {
+            font-family: 'Comic Relief';
+            /* border: 2.9px solid #000000; */
+        }
+
+        .wrapper {
+        text-align: center;
+        }
+
+        #searchbar {
+            box-sizing: border-box;
+            font-family: 'Comic Relief';
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            gap: 10px;
+
+            width: 300px;
+            height: 41px;
+            position: relative;
+
+            background: rgba(80, 80, 80, 0.58);
+            border: 2.9px solid #000000;
+            border-radius: 99999px;
+        }   
+
+        #searchbar::placeholder {
+            color: #2F2F2F;
+        }
+
+        .about-me-box {
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.802);
+            padding: 15px;
+        }
+
+        #button-green {
+            font-family: 'Comic Relief';
+            background: linear-gradient(180deg, #8CFF82 0%, #54994E 100%);;
+            width: 50px;
+            height: 50px;
+            
+            border-radius: 15%;
+            border: 2.9px solid #000000;
+        }
+
+        #button-yellow {
+            font-family: 'Comic Relief';
+            background: linear-gradient(180deg, #FFC082 0%, #99734E 100%);;
+            width: 50px;
+            height: 50px;
+            
+            border-radius: 15%;
+            border: 2.9px solid #000000;
+        }
+
+        #button-blue {
+            font-family: 'Comic Relief';
+            background: linear-gradient(180deg, #8a82ff 0%, #5e4e99 100%);;
+            width: 50px;
+            height: 50px;
+            
+            border-radius: 15%;
+            border: 2.9px solid #000000;
+        }
+
+        #info1 {
+
+            font-style: italic;
+            height: 10px;
+            color: #000000;
+        }
+
+        #blog-cardV2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+
+        left: 10px;
+        top: 10px;
+
+        background: #FFFFFF;
+        border: 3.5px solid #000000;
+        border-radius: 15px;
+
+        }
+
+        .posts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .blog-Card_THUMBV2 {
+
+            box-sizing: border-box;
+
+            width: 416px;
+            height: 103px;
+            border: 5px solid #000000;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+
+        }
+
+        .newPost {
+            font-size: 20px;
+        }
+
+        .nigger {
+            font-size: 70%;
+        }
+
+        .navbar {
+            /* position: absolute; */
+            padding: 1.5%;
+            background: #D0DFFF;
+            border-radius: 1e+08px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            /* Frame 8 */
+        }
+        .img222 {
+            width: 45px;
+            height: 35px;
+        }
+        .navbar_button {
+            font-size: 20px;
+        }
+
+        .navbar_button_triggered {
+            color: rgb(0, 110, 255);
+            font-size: 20px;
+        }
+
+        
+    </style>
+    <script src="assets/js/animationStuff.js"></script>
+    <script>
+        function handlePosts(data){
+          console.log("[BLOGGER] RESPONDED! data: ", data);
+        
+          const posts = data.feed.entry;
+          let container = document.getElementById("blog-container");
+          let path = data.feed.entry
+        
+          if(!container) return;
+        
+          posts.forEach(post => {
+            let card = document.createElement("div");
+            card.id = "blog-cardV2";
+            card.onclick = () => redirectToUrl(post.link.find(l => l.rel === "alternate").href,1000);
+        
+            let thumb = `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/250/300`;
+            if(post.media$thumbnail){
+              thumb = post.media$thumbnail.url;
+            }
+        
+            const title = post.title.$t;
+        
+            card.innerHTML = `
+              <img src="${thumb}" id="blog-Card_THUMBV2" width="250" height="150">
+              <h2>${title}</h2>
+              <p>${post.summary ? post.summary.$t : "no summary available."}</p>
+            `;
+        
+            container.append(card);
+          });
+          return true;
+        }
+    </script>
+</head>
+<body>
+    <!-- <div class="navbar">
+        <img src="assets/img/ic_small.png" alt="Timothy's Image" class="img222">
+        <a onclick="redirectToUrl('index.html', 1000)" class="navbar_button">Home</a>
+        <a onclick="redirectToUrl('about-me.html', 1000)" class="navbar_button">About</a>
+        <b class="navbar_button_triggered">Blog</b> 
+    </div> -->
+    <h1 class="rainbow" class="nigger" onclick="redirectToUrl('index.html', 1000)">my blogs</h1>
+    <input type="text" id="searchbar" placeholder="search my blogs...">
+
+    <!-- content -->
+    <div class="posts" id="blog-container">
+        <script src="https://akukerendanhebat1000.blogspot.com/feeds/posts/default?alt=json-in-script&callback=handlePosts"></script>
+    </div>  
+
+</body>
+</html>
